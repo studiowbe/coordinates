@@ -36,4 +36,14 @@ class LengthTest extends TestCase
         $this->assertEquals(1.3, $distance->getKilometers(1));
         $this->assertEquals(1, $distance->getKilometers(0));
     }
+
+    public function testComparingDistances()
+    {
+        $short = Length::fromKilometers(10);
+        $long = Length::fromKilometers(1000);
+
+        $this->assertEquals(0, $short->compare($short));
+        $this->assertEquals(-1, $short->compare($long));
+        $this->assertEquals(1, $long->compare($short));
+    }
 }
